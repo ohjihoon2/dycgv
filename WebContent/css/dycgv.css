@@ -1,0 +1,543 @@
+
+/*
+	공통 스타일 적용 부분
+*/
+* { 
+	font-family:"나눔바른고딕";
+}
+/* div 띄어쓰기(공백) div 자손중에 id가 content 인 자손 */
+body, header, div #content, footer { 
+	margin:0px; padding:0px;
+	background-color:rgb(253,252,240);
+	/* border:1px solid red; */
+}
+body>div{
+  	/* border:3px solid red; */
+	width:100%;
+	margin:auto;
+}
+
+body>div>section.error{
+	border:1px solid red;
+	text-align:center;
+}
+
+/*
+	헤더 스타일 적용 부분
+*/
+header{
+	/* border:1px solid red; */
+	/* margin-top:0px; */
+	width:100%; height:149px;
+	background-image:url("http://localhost:9090/dycgv/images/bg_header.gif");
+	/* position: fixed; top: 0px; border-top: 2px solid rgb(51, 51, 51);" */
+}
+header>div{
+	width:1024px;
+	margin:auto;
+}
+header>div>nav { margin:0px;}
+header>div>nav>ul {
+	/* border:1px solid green; */
+	margin:0px;
+	padding-top:5px;
+	text-align:right;
+}
+header>div>nav>ul>li {
+	display:inline;		
+}
+header>div>nav>ul>li:last-child {
+	margin-right:10px;		
+}
+header>div>nav>ul>li a {
+	border-right:1px solid gray;
+	font-size:10.5px;
+	font-weight:bold;
+	padding:0px 10px 0px 10px;
+	text-decoration:none;		
+	color:rgb(34,34,34);
+}
+header>div>nav>ul>li:last-child a {
+	border-right:none;
+	color:rgb(237,109,0);	
+}
+header>div>div>a {
+	text-decoration: none;
+}
+header>div>div>a>img { 
+	/* position:absolute;
+	left:80px;
+	top:55px; */ 		
+	position:static;
+	padding:30px 0px 0px 40px;
+	
+}
+header>div>div>div {
+	display:inline-block;
+	position:relative;
+	left:160px;
+	top:0px;
+	text-align:center;
+}
+header>div>div>div ul {		
+	list-style-type:none;
+	/* border:1px solid blue; */
+	margin-top:0px;
+	padding:0px;
+}
+header>div>div>div ul li {
+	/* border:1px solid blue; */
+	display:inline;
+	padding:0px 17px 0px 17px;
+	margin:0px;
+}
+header>div>div>div ul li a {
+	text-decoration:none;
+	color:rgb(34,34,34);
+	font-weight:bold;
+	font-size:15pt;
+}
+
+/*
+	컨텐츠 스타일 적용 부분
+*/
+div #content{
+	text-align: center;
+}
+
+section {
+	margin-bottom: 20px;
+}
+section>img{
+	margin-bottom: 20px;
+}
+
+section:nth-child(2) div iframe{
+	padding-right: 10px;
+}
+
+div#content section:last-child article:nth-child(2) img{
+	
+	padding:5px;
+}
+
+div#content section:last-child article:nth-child(2){
+	border-bottom:3px solid rgb(34,34,34);	
+	padding-bottom: 20px;
+	width:1024;
+	margin: auto;
+}
+div#content section:last-child article:nth-child(3){
+	margin-top: 25px;
+}
+
+div#content section:last-child article:nth-child(3) img:nth-child(1),
+div#content section:last-child article:nth-child(3) img:nth-child(3){
+	
+	width:230px; height:259px;
+	padding:4px;
+	margin-bottom:1.5px;
+	outline: 3.5px solid rgb(34,34,34);
+}
+div#content section:last-child article:nth-child(3) img:nth-child(2){
+	margin:0px 16px 0px 16px;
+}
+
+/*
+	푸터 스타일 적용 부분
+*/
+footer{
+	text-align: center;
+}
+footer>div:first-child{
+	height: 200px; 
+	background-color:rgb(212,242,255);
+	margin-top: 30px;
+}
+footer>div:first-child>img{
+	margin-top: -50px;
+}
+
+footer ul {
+	list-style-type: none;
+	padding:0px;
+}
+
+footer>nav>ul>li{
+	display:inline;		
+}
+
+footer>nav>ul>li>a{
+	border-right: 1px solid lightgray;
+	text-decoration: none;
+	padding: 0px 10px 0px 10px;
+	font-size:12px;
+	font-weight: bold;
+	color:rgb(34,34,34);
+}
+
+footer>nav>ul>li:last-child a{
+	border-right:none;
+}
+
+footer div:nth-child(3) {
+	text-align: left;
+	width:1024px;
+	margin:auto;
+}
+footer div:nth-child(3) div{
+	display:inline-block;
+	font-size:11px;
+	margin-top:0px;
+	padding-top:0px;
+	position: relative;
+	top:-20px;
+}
+
+footer div:nth-child(3) div span{ 
+	display:block;
+	padding:2px 0px 2px 0px;
+}
+footer div:nth-child(4){ 
+	background-image: url("http://localhost:9090/dycgv/images/footer_img01.png");
+	height:113px;
+}
+	
+/*********************************
+	 content - 각 메뉴  레이아웃 설정
+**********************************/
+
+div#content>section>div{
+	width:70%;
+	margin:auto;
+	padding-bottom:50px;
+}
+		
+div#content>section>div>h1{
+	width:210px;
+	border-left:15px solid rgb(34,34,34);
+	border-bottom:1px solid rgb(34,34,34);
+	text-align:left;
+	padding:5px 10px 5px 25px;
+	font-family:"NanumGothic";
+	font-size:25pt;
+}
+
+div#content>section>div>form,
+div#content>section>div>table {
+	/* border:1px solid blue; */
+	width:80%;
+	margin:auto;
+}
+
+div#content>section>div>form.login ul{
+	list-style-type:none;
+	width:70%;
+	margin-left:20px;
+}
+
+div#content>section>div>form.join ul{
+	list-style-type:none;
+	width:80%;
+	font-family:"NanumGothic";
+	font-size:10pt;
+}
+
+
+/*********************************
+	 content - 로그인,회원가입 폼 설정
+**********************************/	
+
+div#content>section>div>form.login ul li,
+div#content>section>div>form.join ul li{
+	margin:10px 5px 10px 5px;
+	text-align:left;
+}
+
+div#content>section>div>form.login ul li label,
+div#content>section>div>form.join ul li label{
+	background-color:green;
+	font-family:"NanumGothic";
+	font-size:10pt;
+	color:white;
+	width:20%;
+	display:inline-block;
+	padding:7px 10px 7px 10px;
+	border-radius: 4px;
+	text-align: center;
+	margin:5px;
+}
+div#content>section>div>form.login ul li input{
+	width:50%;
+}
+div#content>section>div>form.join ul li input[type=text],
+div#content>section>div>form.join ul li input[type=password]{
+	width:40%;
+}
+div#content>section>div>form.login ul li input,
+div#content>section>div>form.join ul li input[type=text],
+div#content>section>div>form.join ul li input[type=password]{
+	padding:6px 10px 6px 20px;
+	border:1px solid #ccc;
+	border-radius: 4px;
+	
+}	
+
+div#content>section>div>form.login ul li:last-child {
+	margin-top:20px;
+	padding-left:20px;
+	text-align:center;
+}
+
+div#content>section>div>form.join ul li:nth-child(6) input {
+	width:13%;
+}
+
+div#content>section>div>form.join ul li:nth-child(6) select {
+	width:25%;
+	border-radius:4px;
+}
+
+div#content>section>div>form.join ul li:nth-child(8) div{
+	width:70%;
+	display: inline-block;
+}
+div#content>section>div>form.join ul li:nth-child(8) div:nth-child(3) input{
+	width:40px;
+	padding:3px 7px 3px 7px;
+}
+div#content>section>div>form.join ul li:nth-child(8) div:nth-child(3) {
+	margin-left:200px;
+}
+
+div#content>section>div>form.join ul li textarea{
+	width:70%;
+	height:100px;
+	border-radius: 4px;
+}
+
+div#content>section>div>form.join ul li:nth-child(10) label {
+	float:left;
+ 	margin-right:10px;
+}
+
+div#content>section>div>form.join ul li:last-child {
+	text-align: center;
+	margin-top:10px;
+}
+
+	
+/*********************************
+	 contents - 마이cgv 설정
+**********************************/
+
+div#content>section>div>div.mycgv span{
+	border: 1px solid blue;
+	display:inline-block;
+	width:150px; height:150px;
+	background: #ccc;
+	border-radius:4px;
+	text-align: center;
+	font-weight:bold;
+}
+
+/*********************************
+	 contents - 공지사항 설정
+**********************************/
+
+div#content>section>div table.notice,
+div#content>section>div table.notice th,
+div#content>section>div table.notice td,
+div#content>section>div table.notice_content,
+div#content>section>div table.notice_content th,
+div#content>section>div table.notice_content td{
+	border:1px solid gray;
+	border-collapse: collapse;
+	font-family: 'NanumGothic';
+	font-size:10pt;
+}
+
+
+div#content>section>div table.notice tr:last-child td,
+div#content>section>div table.notice_content tr:last-child td{
+	border-left :1px solid rgb(253,252,240);
+	border-right :1px solid rgb(253,252,240);
+	border-bottom :1px solid rgb(253,252,240);
+	padding-top:15px;
+}
+div#content>section>div table.notice th,
+div#content>section>div table.notice_content th
+{
+	padding:7px 0px 7px 0px;	
+	background-color: green;
+	opacity: 0.9;
+	color:white;
+}
+
+div#content>section>div table.notice_content tr th:nth-child(1){
+	width:10%;
+}
+
+div#content>section>div table.notice td,
+div#content>section>div table.notice_content td{
+	padding:5px 0px 5px 0px;	
+}
+	
+	
+div#content>section>div table.notice_content tr:last-child td{
+	text-align:right;
+}
+
+
+/*********************************
+	 contents - 게시판 설정
+**********************************/
+
+div#content>section>div table.board_list,
+div#content>section>div table.board_list th,
+div#content>section>div table.board_list td,
+table.board_content, table.board_content th,
+table.board_content td,
+table.board_write, table.board_write th, table.board_write td,
+table.admin_notice_write, table.admin_notice_write th,
+table.admin_notice_write td{
+	border:1px solid gray;
+	border-collapse: collapse;
+	font-family: 'NanumGothic';
+	font-size:10pt;
+}
+
+
+div#content>section>div table.board_list tr:last-child td,
+table.board_content tr:last-child td,
+table.board_write tr:last-child td,
+table.admin_notice_write tr:last-child td{
+	border-left :1px solid rgb(253,252,240);
+	border-right :1px solid rgb(253,252,240);
+	border-bottom :1px solid rgb(253,252,240);
+	padding-top:15px;
+}
+
+div#content>section>div>table.board_write,
+div#content>section>div>table.admin_notice_write{
+	width:50%;
+}
+div#content>section>div table.board_list th,
+table.board_content th,
+table.board_write th{
+	padding:7px 0px 7px 0px;	
+	background-color: purple;
+	opacity: 0.9;
+	color:white;
+}
+table.admin_notice_write th{
+	padding:7px 0px 7px 0px;	
+	background-color: mediumseagreen;
+	opacity: 0.9;
+	color:white;
+}
+table.board_write tr th:first-child,
+table.admin_notice_write tr th:first-child{
+	width: 100px;
+}
+div#content>section>div table.board_list tr th:nth-child(1),
+table.board_content tr th:nth-child(1){
+	width:10%;
+}
+
+div#content>section>div table.board_list td,
+table.board_content td, table.board_write td{
+	padding:5px 0px 5px 0px;	
+}
+
+table.board_write tr td:nth-child(2),
+table.admin_notice_write tr td:nth-child(2){
+	width:600px;
+	text-align:left; padding-left:10px;
+}	
+div#content>section>div>div.board_list_btn1{
+	width:80%; margin:auto;
+	text-align:right;
+	padding-right:20px;	
+	margin-bottom:20px;
+}
+
+table.board_content tr:last-child td{
+	text-align:right;
+}
+table.board_write input,
+table.admin_notice_write input{
+	border: 1px solid #ccc;
+	width:95%;
+	padding: 5px 5px 5px 10px;
+	border-radius: 4px;
+		
+}
+table.board_write textarea,
+table.admin_notice_write textarea{
+	border: 1px solid #ccc;
+	width:97%;
+	height:200px;	
+	border-radius: 4px;
+}
+
+table.board_delete tr:first-child td,
+table.admin_notice_delete tr:first-child td{
+	border:1px solid red;
+	font-size:15pt;
+	font-family: 'NanumGothic';
+	font-weight:bold;
+	padding-bottom:40px;
+		
+}
+
+
+/*********************************
+	 contents - 관리자 페이지 설정
+**********************************/
+
+div#content>section>div.admin_main span{
+	display:inline-block;
+	width:120px;
+	padding:30px;
+	background-color: purple;
+	border-radius: 4px;
+	color:white;
+}
+
+div#content>section>div.admin_main span:hover{
+	background:tomamto;
+}
+
+/*********************************
+		       버튼 스타일 설정
+**********************************/
+
+div#content>section>div>form.login ul li button,
+div#content>section>div>form.join ul li button,
+table button,
+div.board_list_btn1 button{
+	background-color:lightgray;
+	font-family:"NanumGothic";
+	font-size:10pt;
+	display:inline-block;
+	width:20%;
+	border:1px solid #ccc;
+	padding:7px 5px 7px 5px;
+	border-radius: 4px;
+	font-weight:bold;
+}	
+
+
+div.board_list_btn1 button, table button{
+	padding:6px 3px 6px 3px;
+	width:15%;
+}
+
+table.notice tr td:last-child button{
+	width:50px;
+}
+
+div#content>section>div table.notice_content tr th:first-child {
+	width:100px;
+}
