@@ -7,6 +7,19 @@ import com.dycgv.vo.NoticeVO;
 
 public class NoticeCheckService {
 	
+	
+	
+	/**
+	 * 공지사항 삭제
+	 */
+	public boolean getResultDelete(String nid) {
+		boolean result = false;
+		NoticeDAO dao = new NoticeDAO();
+		result = dao.getNoticeDelete(nid);
+		
+		return result;
+	}
+	
 	/**
 	 * 공지사항 수정
 	 * @param nid

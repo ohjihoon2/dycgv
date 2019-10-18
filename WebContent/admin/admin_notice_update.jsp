@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="com.dycgv.service.*, com.dycgv.vo.*"%>
+<% request.setCharacterEncoding("utf-8"); %>
 <%
 	String nid = request.getParameter("nid");
 	NoticeCheckService service = new NoticeCheckService();
@@ -23,7 +24,7 @@
 				<img alt="" src="http://localhost:9090/dycgv/images/section1_img01.jpg">
 				<div>
 					<h1>공지사항관리</h1>
-					<form name ="noticeUpdateForm" action="admin_update_process.jsp" method="post">
+					<form name ="noticeUpdateForm" action="admin_notice_update_process.jsp" method="post">
 						<table class="admin_notice_write">
 							<tr>
 								<th>제목</th>

@@ -1,7 +1,6 @@
 <%@page import="com.dycgv.service.NoticeCheckService, com.dycgv.vo.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%
 String nid = request.getParameter("nid");
 
@@ -12,6 +11,7 @@ NoticeCheckService service = new NoticeCheckService();
 	NoticeVO vo = service.getResultNid(nid);
 	
 	if(vo.getNtitle() != "" && vo.getNtitle() !=null){
+		vo.setNcontent(vo.getNcontent().replace("\r\n","<br>"));
 		service.getResultNitUpdate(nid);
 	}else{
 		response.sendRedirect("../errorPage.jsp");
@@ -53,8 +53,8 @@ NoticeCheckService service = new NoticeCheckService();
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan=5>
-								</p><%=vo.getNcontent() %> 
+							<td colspan=5 style="text-align:left; padding:30px">
+								<%=vo.getNcontent() %> 
 							</td>
 						</tr>
 						<tr>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String bno = request.getParameter("bno");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +25,7 @@
 						</tr>
 						<tr>
 							<td>
-								<a href="#"><button type="button">삭제완료</button></a>
+								<a href="board_delete_process.jsp?bno=<%=bno %>"><button type="button">삭제완료</button></a>
 								<a href="board_list.jsp"><button type="button">목록으로</button></a>
 								<a href="board_content.jsp"><button type="button">이전페이지</button></a>
 							</td>

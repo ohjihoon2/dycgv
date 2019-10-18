@@ -172,12 +172,27 @@ public class NoticeDAO {
 		return result;
 	}
 	
-	
-	
-	
-	
-	
-	
+	public boolean getNoticeDelete(String nid) {
+		boolean result = false;
+		
+		String sql = "delete from dycgv_notice where nid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, nid);
+			int val = pstmt.executeUpdate();
+			
+			if(val != 0) {
+				result =true;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
 	
 	
 	//6 ´Ü°è 
@@ -192,6 +207,7 @@ public class NoticeDAO {
 		}
 }
 
+	
 
 
 

@@ -6,6 +6,11 @@
 	NoticeCheckService service = new NoticeCheckService();
 	NoticeVO vo = service.getResultNid(nid);
 	
+	if(vo.getNtitle() != "" && vo.getNtitle() !=null){
+		vo.setNcontent(vo.getNcontent().replace("\r\n","<br>"));
+	}else{
+		response.sendRedirect("../errorPage.jsp");
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +39,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan=5>
+							<td colspan=5 style="text-align:left; padding:30px">
 								<p><%=vo.getNcontent() %>
 								</p> 
 							</td>
@@ -42,7 +47,7 @@
 						<tr>
 							<td colspan=6>
 								<a href="admin_notice_update.jsp?nid=<%=nid%>"><button type="button">수정하기</button></a>
-								<a href="admin_notice_delete.jsp"><button type="button">삭제하기</button></a>
+								<a href="admin_notice_delete.jsp?nid=<%=nid%>"><button type="button">삭제하기</button></a>
 								<a href="admin_notice_list.jsp"><button type="button">목록으로</button></a>
 							</td>
 						</tr>

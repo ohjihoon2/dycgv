@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	String nid = request.getParameter("nid");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +26,7 @@
 						</tr>
 						<tr>
 							<td>
-								<a href="#"><button type="button">삭제완료</button></a>
+								<a href="admin_notice_delete_process.jsp?nid=<%=nid %>"><button type="button">삭제완료</button></a>
 								<a href="admin_notice_list.jsp"><button type="button">목록으로</button></a>
 								<a href="admin_notice_content.jsp"><button type="button">이전페이지</button></a>
 							</td>

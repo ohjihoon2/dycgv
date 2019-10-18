@@ -1,5 +1,7 @@
+<%@page import="com.dycgv.service.BoardCheckService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +20,7 @@
 				<img alt="" src="http://localhost:9090/dycgv/images/section1_img01.jpg">
 				<div>	
 					<h1>게시판</h1>
-					<form action="#" method="get" name="boardForm">
+					<form action="board_write_process.jsp" method="get" name="boardForm">
 						<table class="board_write">
 							<tr>
 								<th>제목</th>
@@ -34,8 +36,8 @@
 							</tr>
 							<tr>
 								<td colspan=2>
-									<a href="#"><button type="button" id="btnBoardWrite">등록하기</button></a>
-									<a href="#"><button type="button">다시쓰기</button></a>
+									<button type="submit" id="btnBoardWrite">등록하기</button>
+									<button type="reset">다시쓰기</button>
 									<a href="board_list.jsp"><button type="button">목록으로</button></a>
 								</td>
 							</tr>

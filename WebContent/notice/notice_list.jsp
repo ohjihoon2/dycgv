@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.dycgv.service.*, java.util.*, com.dycgv.vo.*"%>
-    
+
  <%
+ 	request.setCharacterEncoding("utf-8");
  	NoticeCheckService service = new NoticeCheckService();
  	ArrayList<NoticeVO> list = service.getResultList();
  %>
