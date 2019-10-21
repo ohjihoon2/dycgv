@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.dycgv.vo.JoinVO;
-import com.dycgv.vo.LoginVO;
+import com.dycgv.vo.MemberVO;
 
 public class JoinDAO {
 
@@ -45,6 +45,7 @@ public class JoinDAO {
 				e.printStackTrace();
 			}
 		}
+
 		
 		/**
 		 *	 4 단계 : 회원가입 
@@ -80,10 +81,75 @@ public class JoinDAO {
 		/**
 		 *  4~5단계 : 회원 리스트 페이지 
 		 */
+		public ArrayList<MemberVO> getResultList(){
+			ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+			
+			String sql="select rownum rno, name, phone_number, to_char(jdate,'yyyy/mm/dd'), jgrade, jstatus, id" + 
+					" from (select name, phone_number, jdate, jgrade, jstatus, id " + 
+					"            from dycgv_member order by jdate desc)";
+			getPreparedStatement(sql);
+			
+			try {
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					MemberVO vo = new MemberVO();
+					vo.setRno(rs.getInt(1));
+					vo.setName(rs.getString(2));
+					vo.setPhone_number(rs.getString(3));
+					vo.setJdate(rs.getString(4));
+					vo.setJgrade(rs.getString(5));
+					vo.setJstatus(rs.getInt(6));
+					vo.setId(rs.getString(7));
+					
+					list.add(vo);
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		
+			return list;
+		}
 		
 		/**
 		 *  4~5단계 : 회원 리스트 상세 출력 
 		 */
+		public MemberVO getResultContent(String id) {
+			
+			MemberVO vo = new MemberVO();
+			String sql="select * from dycgv_member where id=?";
+			getPreparedStatement(sql);
+			
+			try {
+				pstmt.setString(1, id);
+				
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					vo.setId(rs.getString(1));
+					vo.setName(rs.getString(2));
+					vo.setGender(rs.getString(3));
+					vo.setPass(rs.getString(4));
+					vo.setEmail(rs.getString(5));
+					vo.setAddr(rs.getString(6));
+					vo.setPhone_comp(rs.getString(7));
+					vo.setPhone_number(rs.getString(8));
+					vo.setDy_hobby(rs.getString(9));
+					vo.setIntro(rs.getString(10));
+					vo.setJdate(rs.getString(11));
+					vo.setJgrade(rs.getString(12));
+					vo.setJstatus(rs.getInt(13));
+					
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			return vo;
+		}
+		
 		
 		/**
 		 *  6단계 : 종료

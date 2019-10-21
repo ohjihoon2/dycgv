@@ -113,7 +113,12 @@ public class JoinVO {
 		
 		String list ="";
 		for(int i=0;i<hobby.length;i++) {
-			list += hobby[i];
+			
+			if(i==0) {
+				list += hobby[i];
+			}else {
+				list +=", "+hobby[i];
+			}
 		}
 		return list;
 	}

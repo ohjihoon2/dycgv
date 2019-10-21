@@ -1,7 +1,10 @@
 package com.dycgv.service;
 
+import java.util.ArrayList;
+
 import com.dycgv.dao.JoinDAO;
 import com.dycgv.vo.JoinVO;
+import com.dycgv.vo.MemberVO;
 
 public class JoinCheckService {
 
@@ -28,4 +31,22 @@ public class JoinCheckService {
 		
 		return result;
 	}
+	
+	/**
+	 * 회원 관리 리스트
+	 */
+	public ArrayList<MemberVO> getJoinResultList() {
+		JoinDAO dao = new JoinDAO();
+		ArrayList<MemberVO> list = dao.getResultList();
+		
+		return list;
+	}
+	
+	public MemberVO getResultContent(String id) {
+		MemberVO vo = new MemberVO();
+		JoinDAO dao = new JoinDAO();
+		vo = dao.getResultContent(id);
+		return vo;
+	}
+	
 }

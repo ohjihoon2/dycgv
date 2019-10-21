@@ -1,5 +1,12 @@
+<%@page import="com.dycgv.service.JoinCheckService, com.dycgv.vo.MemberVO, java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	
+	JoinCheckService service = new JoinCheckService();
+	ArrayList<MemberVO> list = service.getJoinResultList();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,85 +32,18 @@
 							<th>등급</th>
 							<th>회원탈퇴</th>
 						</tr>
+						<% for(MemberVO vo: list){ %>
 						<tr>
-							<td>1</td>
-							<td><a href="admin_member_content.jsp">홍길동</a></td>
-							<td>010-1234-1234</td>
-							<td>2019-09-24</td>
-							<td>Diamond</td>
+							<td><%=vo.getRno() %></td>
+							<td><a href="admin_member_content.jsp?id=<%=vo.getId()%>"><%=vo.getName() %></a></td>
+							<td><%=vo.getPhone_number() %></td>
+							<td><%=vo.getJdate()%></td>
+							<td><%=vo.getJgrade()%></td>
+							<%if(vo.getJstatus() == 0){ %>
 							<td><button type="button">삭제</button></td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td><a href="admin_member_content.jsp">홍길동</a></td>
-							<td>010-1234-1234</td>
-							<td>2019-09-24</td>
-							<td>Diamond</td>
-							<td><button type="button">삭제</button></td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td><a href="admin_member_content.jsp">홍길동</a></td>
-							<td>010-1234-1234</td>
-							<td>2019-09-24</td>
-							<td>Diamond</td>
-							<td><button type="button">삭제</button></td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td><a href="admin_member_content.jsp">홍길동</a></td>
-							<td>010-1234-1234</td>
-							<td>2019-09-24</td>
-							<td>Diamond</td>
-							<td><button type="button">삭제</button></td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td><a href="admin_member_content.jsp">홍길동</a></td>
-							<td>010-1234-1234</td>
-							<td>2019-09-24</td>
-							<td>Diamond</td>
-							<td><button type="button">삭제</button></td>
-						</tr>
-						<tr>
-							<td>6</td>
-							<td><a href="admin_member_content.jsp">홍길동</a></td>
-							<td>010-1234-1234</td>
-							<td>2019-09-24</td>
-							<td>Diamond</td>
-							<td><button type="button">삭제</button></td>
-						</tr>
-						<tr>
-							<td>7</td>
-							<td><a href="admin_member_content.jsp">홍길동</a></td>
-							<td>010-1234-1234</td>
-							<td>2019-09-24</td>
-							<td>Diamond</td>
-							<td><button type="button">삭제</button></td>
-						</tr>
-						<tr>
-							<td>8</td>
-							<td><a href="admin_member_content.jsp">홍길동</a></td>
-							<td>010-1234-1234</td>
-							<td>2019-09-24</td>
-							<td>Diamond</td>
-							<td><button type="button">삭제</button></td>
-						</tr>
-						<tr>
-							<td>9</td>
-							<td><a href="admin_member_content.jsp">홍길동</a></td>
-							<td>010-1234-1234</td>
-							<td>2019-09-24</td>
-							<td>Diamond</td>
-							<td><button type="button">삭제</button></td>
-						</tr>
-						<tr>
-							<td>10</td>
-							<td><a href="admin_member_content.jsp">홍길동</a></td>
-							<td>010-1234-1234</td>
-							<td>2019-09-24</td>
-							<td>Diamond</td>
-							<td><button type="button">삭제</button></td>
+							<%}else{ %>
+							<td><button type="button" style="color:white; background:rgb(34,34,34)">삭제</button></td>
+							<%}} %>
 						</tr>
 						<tr>
 							<td colspan=4>[이전] 1 2 3 4 5 [다음]</td>
