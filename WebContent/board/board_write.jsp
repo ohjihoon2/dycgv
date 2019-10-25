@@ -20,7 +20,11 @@
 				<img alt="" src="http://localhost:9090/dycgv/images/section1_img01.jpg">
 				<div>	
 					<h1>게시판</h1>
-					<form action="board_write_process.jsp" method="get" name="boardForm">
+					<form action="board_write_process.jsp" method="post" name="boardForm" enctype="multipart/form-data">
+					<!--
+						 enctype="multipart/form-data"  >> 문자형태로 넘어가지 않고 String type으로 넘어간다  
+						 String type으로 넘어왔으니 서버에서 받지 못한다. 
+					-->					
 						<table class="board_write">
 							<tr>
 								<th>제목</th>

@@ -8,6 +8,7 @@ import com.dycgv.vo.MemberVO;
 
 public class JoinCheckService {
 
+	
 	//회원가입 실행 메소드
 	public boolean getJoinResult(JoinVO vo) {
 		boolean result = false;

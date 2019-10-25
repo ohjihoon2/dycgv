@@ -33,6 +33,18 @@ public class BoardCheckService {
 	}
 	
 	/**
+	 * 게시물 수정 파일없음
+	 */
+	public boolean getResultUpdateNoFile(BoardVO vo) {
+		
+		boolean result = false;
+		BoardDAO dao = new BoardDAO();
+		result = dao.getResultUpdateNoFile(vo);
+		
+		return result;
+	}
+	
+	/**
 	 * 조회수 올리기
 	 */
 	public void getResultHit(BoardVO vo) {
@@ -49,7 +61,6 @@ public class BoardCheckService {
 	 */
 	public BoardVO getResultBoardContent(String bno) {
 		
-		boolean result = false;
 		BoardDAO dao = new BoardDAO();
 		BoardVO vo = dao.getBoardContent(bno);
 		

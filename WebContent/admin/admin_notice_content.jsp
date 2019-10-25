@@ -42,6 +42,9 @@
 							<td colspan=5 style="text-align:left; padding:30px">
 								<p><%=vo.getNcontent() %>
 								</p> 
+								<%if(vo.getNsfile() != null && vo.getNsfile() != ""){ %>
+								<img width= "300px" height="300px"  src="http://localhost:9090/dycgv/fileupload/<%=vo.getNsfile() %>">
+								<%} %>
 							</td>
 						</tr>
 						<tr>

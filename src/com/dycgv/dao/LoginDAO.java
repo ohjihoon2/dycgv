@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import com.dycgv.vo.LoginVO;
+import com.dycgv.vo.SessionVO;
 
 public class LoginDAO {
 	//Field
@@ -45,29 +46,29 @@ public class LoginDAO {
 			/**
 			 *  4~5단계 : 회원 리스트 페이지 
 			 */
-			public int getResultLogin(LoginVO vo) {
-				int result = 0;
-				String sql = "select count(*) from dycgv_member where id = ? and pass=?";			
+			public SessionVO getResultLogin(LoginVO vo) {
+				SessionVO svo= new SessionVO();
+				String sql = "select count(*), name from dycgv_member where id=? and pass=? group by name";			
 				getPreparedStatement(sql);
 
 				try {
 					pstmt.setString(1, vo.getId());
-//					System.out.println(vo.getId());
 					pstmt.setString(2, vo.getPass());
-//					System.out.println(vo.getPass());
 					
 					rs = pstmt.executeQuery();
 					
 					while(rs.next()) {
-						result = rs.getInt(1);
+						if(rs.getInt(1) !=0) {
+							svo.setResult(true);
+							svo.setName(rs.getString(2));
+						}
 					}
-					System.out.println(result);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				
 				
-				return result;
+				return svo;
 			}
 			
 			/**

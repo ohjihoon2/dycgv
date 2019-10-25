@@ -2,6 +2,7 @@ package com.dycgv.service;
 
 import com.dycgv.dao.LoginDAO;
 import com.dycgv.vo.LoginVO;
+import com.dycgv.vo.SessionVO;
 
 public class LoginCheckService {
 
@@ -10,14 +11,12 @@ public class LoginCheckService {
 	 * @param vo
 	 * @return
 	 */
-	public boolean getLoginResult(LoginVO vo){
-		boolean result = false;
+	public SessionVO getLoginResult(LoginVO vo){
+		SessionVO svo= new SessionVO();
 		LoginDAO dao = new LoginDAO();
 
-		int count = dao.getResultLogin(vo);
-		if(count!=0) {
-			result =true;
-		}
-		return result;
+		svo = dao.getResultLogin(vo);
+		
+		return svo;
 	}
 }

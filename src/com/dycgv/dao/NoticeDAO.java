@@ -47,14 +47,15 @@ public class NoticeDAO {
 	 */
 	public boolean insertNotice(NoticeVO vo) {
 		boolean result = false;
-		String sql = "insert into dycgv_notice values(DYCGV_NOTICE_SEQU.nextval, ?, ? , sysdate,0,' ',' ')";
+		String sql = "insert into dycgv_notice values(DYCGV_NOTICE_SEQU.nextval, ?, ? , sysdate,0,?,?)";
 		getPreparedStatement(sql);
 		int val =0;
 		System.out.println("1 :"+ vo.getNtitle());
 		try {
 			pstmt.setString(1, vo.getNtitle());
-			System.out.println("2 :"+ vo.getNtitle());
 			pstmt.setString(2, vo.getNcontent());
+			pstmt.setString(3, vo.getNfile());
+			pstmt.setString(4, vo.getNsfile());
 			val = pstmt.executeUpdate();
 			
 			if(val !=0) {
@@ -153,13 +154,15 @@ public class NoticeDAO {
 	 */
 	public boolean getNoticeUpdate(NoticeVO vo) {
 		boolean result = false;
-		String sql="update dycgv_notice set ntitle = ? , ncontent =? where nid = ?";
+		String sql="update dycgv_notice set ntitle = ? , ncontent =?, nfile=?, nsfile=?  where nid = ?";
 		getPreparedStatement(sql);
 		
 		try {
 			pstmt.setString(1, vo.getNtitle());
 			pstmt.setString(2, vo.getNcontent());
-			pstmt.setInt(3, vo.getNid());
+			pstmt.setString(3, vo.getNfile());
+			pstmt.setString(4, vo.getNsfile());
+			pstmt.setInt(5, vo.getNid());
 			
 			int val = pstmt.executeUpdate();
 			if(val !=0) {

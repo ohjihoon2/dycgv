@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String sid = (String)session.getAttribute("sid");
+	if(sid != null){
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,3 +32,15 @@
 	</div>
 </body>
 </html>
+<%-- <%}else{
+		response.sendRedirect("../errorPage.jsp");
+	}%> --%>
+	<%}else{ %>
+		<script>
+			alert("페이지 주소가 올바르지 않습니다. 확인 후 다시 접속해주세요.")
+			location.href="../index.jsp";
+		</script>
+	<%	
+			//response.sendRedirect("../errorPage.jsp");
+			//response를 사용하면 script가 실행이 안되니 script를 사용하여 페이지를 이동
+	}%>

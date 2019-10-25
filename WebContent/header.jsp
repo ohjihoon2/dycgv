@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-	boolean result = Boolean.valueOf(request.getParameter("result"));
+	//boolean result = Boolean.valueOf(request.getParameter("result"));
 	
-	String loginAddr = "", loginMenu = "";
-	if(result){
+	String loginAddr = "", loginMenu = "" , succ_msg="", mycgvMenu="";
+	String sid = (String)session.getAttribute("sid");
+	String sname = (String)session.getAttribute("sname");
+	if(sid !=null){
 		loginAddr="logout.jsp";
 		loginMenu="로그아웃";
 	}else{
@@ -12,6 +14,7 @@
 		loginMenu="로그인";
 	}
 %>
+sid= <%=(String)session.getAttribute("sid") %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,13 +26,23 @@
 		<div>
 			<nav>
 				<ul>
-					<li><a href="http://localhost:9090/dycgv/login/<%=loginAddr%>"><%=loginMenu%></a></li>
+					<% if(sid == null) {%>	
+					<li><a href="http://localhost:9090/dycgv/login/login.jsp">로그인</a></li>
 					<li><a href="http://localhost:9090/dycgv/join/join.jsp">회원가입</a></li>
+					<li><a href="http://localhost:9090/dycgv/notice/notice_list.jsp">공지사항</a></li>
+					<li><a href="http://localhost:9090/dycgv/board/board_list.jsp">게시판</a></li>
+					<li><a href="http://localhost:9090/dycgv/login/login.jsp">ENGLISH TICKETING</a></li>
+					<%}else{ %>
+					<li><%= sname%>님 환영합니다.</li>
+					<li><a href="http://localhost:9090/dycgv/login/logout.jsp">로그아웃</a></li>
 					<li><a href="http://localhost:9090/dycgv/mycgv/mycgv.jsp">MyCGV</a></li>
 					<li><a href="http://localhost:9090/dycgv/notice/notice_list.jsp">공지사항</a></li>
 					<li><a href="http://localhost:9090/dycgv/board/board_list.jsp">게시판</a></li>
+					<%if(sid.equals("admin")){ %>
 					<li><a href="http://localhost:9090/dycgv/admin/admin.jsp">Admin</a></li>
+					<%} %>
 					<li><a href="http://localhost:9090/dycgv/login/login.jsp">ENGLISH TICKETING</a></li>
+					<%} %>
 				</ul>
 			</nav>
 			<div>

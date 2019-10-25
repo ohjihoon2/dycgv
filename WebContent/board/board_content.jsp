@@ -9,9 +9,12 @@
 	String bno = request.getParameter("bno");
 	BoardCheckService service = new BoardCheckService();
 	vo = service.getResultBoardContent(bno);
+	
 	if(vo.getBcontent() != "" && vo.getBcontent() != null){
 		service.getResultHit(vo);
-		out.write("성공");
+		if(vo.getBcontent() !="" && vo.getBcontent() !=null){
+			vo.setBcontent(vo.getBcontent().replace("\r\n", "<br>"));			
+		}
 	}else{
 		out.write("실패");
 		
@@ -46,8 +49,18 @@
 						<tr>
 							<th>내용</th>
 							<td colspan=5>
+								<%if(vo.getBcontent() != null && vo.getBcontent() !=""){ %>
 								<p><%=vo.getBcontent() %>
 								</p> 
+								<%} %>
+							</td>
+						</tr>
+						<tr>
+							<th>file</th>
+							<td colspan=5>
+								<%if(vo.getBsfile() != null && vo.getBsfile() != ""){ %>
+								<img width= "300px" height="300px"  src="http://localhost:9090/dycgv/fileupload/<%=vo.getBsfile() %>">
+								<%} %>
 							</td>
 						</tr>
 						<tr>

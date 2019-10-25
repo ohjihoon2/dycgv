@@ -18,7 +18,7 @@
 				<img alt="" src="http://localhost:9090/dycgv/images/section1_img01.jpg">
 				<div>
 					<h1>공지사항관리</h1>
-					<form action="admin_notice_write_process.jsp" method="post" name="noticeForm">
+					<form action="admin_notice_write_process.jsp" method="post" name="noticeForm" enctype="multipart/form-data">
 						<table class="admin_notice_write">
 							<tr>
 								<th>제목</th>

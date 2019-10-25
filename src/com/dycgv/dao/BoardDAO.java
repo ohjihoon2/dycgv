@@ -81,7 +81,7 @@ public class BoardDAO {
 	 */
 	public BoardVO getBoardContent(String bno) {
 		BoardVO vo = new BoardVO();
-		String sql="select bno, btitle, bcontent, bdate, bhit from dycgv_board where bno = ?";
+		String sql="select bno, btitle, bcontent, bdate, bhit, bfile, bsfile from dycgv_board where bno = ?";
 		getPreparedStatement(sql);
 		
 		try {
@@ -94,6 +94,8 @@ public class BoardDAO {
 				vo.setBcontent(rs.getString(3));
 				vo.setBdate(rs.getString(4));
 				vo.setBhit(rs.getInt(5));
+				vo.setBfile(rs.getString(6));
+				vo.setBsfile(rs.getString(7));
 			}
 			
 		}catch(Exception e) {
@@ -108,14 +110,15 @@ public class BoardDAO {
 	 */
 	public boolean getBoardWrite(BoardVO vo) {
 		boolean result= false;
-		String sql="insert into dycgv_board values(seq_board.nextval, ?,?,sysdate,0,' ',' ')";
+		String sql="insert into dycgv_board values(seq_board.nextval, ?,?,sysdate,0,?,?)";
 		
 		getPreparedStatement(sql);
 		
 		try {
 			pstmt.setString(1, vo.getBtitle());
 			pstmt.setString(2, vo.getBcontent());
-			
+			pstmt.setString(3, vo.getBfile());
+			pstmt.setString(4, vo.getBsfile());
 			int val = pstmt.executeUpdate();
 			
 			if(val !=0) {
@@ -152,7 +155,38 @@ public class BoardDAO {
 	 */
 	public boolean  getBoardUpdate(BoardVO vo) {
 		boolean result =false;
-		String sql="update dycgv_board set btitle=?, bcontent=?where bno=?";
+		String sql="update dycgv_board set btitle=?, bcontent=?, bfile=?, bsfile=? where bno=?";
+		
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, vo.getBtitle());
+			pstmt.setString(2, vo.getBcontent());
+			pstmt.setString(3, vo.getBfile());
+			pstmt.setString(4, vo.getBsfile());
+			pstmt.setInt(5, vo.getBno());
+			
+			int val = pstmt.executeUpdate();
+			
+			if(val !=0) {
+				result =true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("dao "+result);
+		return result;
+	}
+	
+	
+	/**
+	 * 파일없는 게시판 업데이트
+	 * @param vo
+	 * @return
+	 */
+	public boolean getResultUpdateNoFile(BoardVO vo) {
+		boolean result =false;
+		String sql="update dycgv_board set btitle=?, bcontent=? where bno=?";
 		
 		getPreparedStatement(sql);
 		
@@ -172,7 +206,7 @@ public class BoardDAO {
 		System.out.println("dao "+result);
 		return result;
 	}
-	
+
 	/**
 	 * 게시물 삭제
 	 * @param bno
@@ -212,7 +246,7 @@ public class BoardDAO {
 			}
 		
 	}
-
+	
 
 
 

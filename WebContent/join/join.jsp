@@ -7,8 +7,35 @@
 	<title>CGV에 오신것을 환영합니다.</title>
 	<link rel="stylesheet" type="text/css" href="http://localhost:9090/dycgv/css/dycgv.css">
 	<script src="http://localhost:9090/dycgv/js/jquery-3.4.1.min.js"></script>
-	<script src	="http://localhost:9090/dycgv/js/dycgv.js"></script>
-	
+	<script src="http://localhost:9090/dycgv/js/dycgv.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btn_id").click(function(){
+				if($("#id").val()==""){
+					alert("값을 입력해주세요.");
+					$("#btn_id").focus();
+				}else{
+			  		$.ajax({
+		  				url: "idCheck.jsp?id="+$("#id").val(),
+		  				success: function(result){
+		  					if(result ==0	){
+		  						$("#msg").text("사용가능한 아이디입니다.")
+		  						.css("display", "block")
+		  						.css("color", "blue")
+		  						.css("margin", "10px 0px 0px 200px")
+		  						.css("font-size", "10pt");
+		  					}else{
+		  						$("#msg").text("이미 사용중인 아이디입니다. 다시 입력해주세요.")
+		  						.css("display", "block")
+		  						.css("color", "red")
+		  						.css("margin", "10px 0px 0px 200px")
+		  						.css("font-size","10pt");
+		  					}
+			  		}});
+				}
+			});
+		});
+	</script>
 </head>
 <body>
 	<div>
@@ -24,7 +51,8 @@
 						<li>
 							<label>아이디</label>
 							<input type="text" name="id" id= "id">
-							<button type="button">중복확인</button>
+							<button type="button" id="btn_id">중복확인</button>
+							<span id="msg"></span>
 						</li>
 						<li>
 							<label>이름</label>

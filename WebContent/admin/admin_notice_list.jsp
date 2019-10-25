@@ -15,11 +15,11 @@
 	<link rel="stylesheet" type="text/css" href="http://localhost:9090/dycgv/css/dycgv.css">
 	<script src="http://localhost:9090/MyJSP/jquery/jquery-3.4.1.min.js"></script>
 	<script>
-		$(document).ready(function(){
+	/* 	$(document).ready(function(){
 			if(${param.result} ==true){
 				alert('삭제 되었습니다.');
 			}
-		});
+		}); */
 	</script>
 </head>
 <body>

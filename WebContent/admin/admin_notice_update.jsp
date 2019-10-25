@@ -6,7 +6,6 @@
 	String nid = request.getParameter("nid");
 	NoticeCheckService service = new NoticeCheckService();
 	NoticeVO vo = service.getResultNid(nid);
-	
 %>
 <!DOCTYPE html>
 <html>
@@ -24,7 +23,7 @@
 				<img alt="" src="http://localhost:9090/dycgv/images/section1_img01.jpg">
 				<div>
 					<h1>공지사항관리</h1>
-					<form name ="noticeUpdateForm" action="admin_notice_update_process.jsp" method="post">
+					<form name ="noticeUpdateForm" action="admin_notice_update_process.jsp" method="post" enctype="multipart/form-data">
 						<table class="admin_notice_write">
 							<tr>
 								<th>제목</th>
@@ -36,7 +35,7 @@
 							</tr>
 							<tr>
 								<th>파일</th>
-								<td><input type="file" name="nfile"></td>
+								<td><input type="file" name="nfile"><%=vo.getNfile() %></td>
 							</tr>
 							<tr>
 								<td colspan=2>

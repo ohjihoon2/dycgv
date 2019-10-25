@@ -17,10 +17,13 @@
 	//loginCheck 객체 생성 및 메소드 호출
 	//com.dycgv.service.LoginCheckService.getLoginREsult(vo);
 	LoginCheckService service = new LoginCheckService(); 
-	boolean result = service.getLoginResult(vo);
+	SessionVO svo = service.getLoginResult(vo);
 	
-	if(result){
-		response.sendRedirect("../index.jsp?result="+result);
+	if(svo.isResult()){
+		//세션 객체에 id를 넣는다. 
+		session.setAttribute("sid", vo.getId());
+		session.setAttribute("sname", svo.getName());
+		response.sendRedirect("../index.jsp?");
 	}else{
 		response.sendRedirect("login.jsp");
 	}

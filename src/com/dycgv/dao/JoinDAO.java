@@ -46,6 +46,25 @@ public class JoinDAO {
 			}
 		}
 
+		public int getResultIdCheck(String id) {
+			int result = 0;
+			
+			String sql = "select count(*) from dycgv_member where id=?";
+			getPreparedStatement(sql);
+			
+			try {
+				pstmt.setString(1, id);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					result = rs.getInt(1);
+				};
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
 		
 		/**
 		 *	 4 단계 : 회원가입 
