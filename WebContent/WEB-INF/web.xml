@@ -355,6 +355,7 @@
 
 	<!-- SessionCheck service start-->
 	<!-- web.xml 파일과 SessionCheckServlet 연결 -->
+	<!-- 
 	<servlet>
         <servlet-name>SessionCheckServlet</servlet-name>
         <servlet-class>com.dycgv.service.SessionCheckServlet</servlet-class>
@@ -365,7 +366,8 @@
         <servlet-name>SessionCheckServlet</servlet-name>
         <url-pattern>/admin/*</url-pattern>
         <url-pattern>/mycgv/*</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping> 
+    -->
    	<!-- SessionCheck service end-->
    	
    	

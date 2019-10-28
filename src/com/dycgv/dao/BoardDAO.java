@@ -106,6 +106,38 @@ public class BoardDAO {
 	}
 	
 	/**
+	 * 게시판 전체 리스트 
+	 * */
+	public ArrayList<BoardVO> getBoardList(int startCount, int endCount){
+		
+		ArrayList<BoardVO> list = new ArrayList<BoardVO>();
+		try{
+			String sql = " select * from " +
+			        " (select rownum as rno, bno , btitle, to_char(bdate,'yyyy-mm-dd') as bdate, bhit " + 
+			        " from (select bno, btitle, bdate, bhit" + 
+					"            from dycgv_board order by bno desc)) "+
+					" where rno between ? and ?";
+					
+			
+			getPreparedStatement(sql);
+			pstmt.setInt(1, startCount);
+			pstmt.setInt(2, endCount);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				BoardVO vo = new BoardVO();
+				vo.setRno(rs.getInt(1));
+				vo.setBno(rs.getInt(2));
+				vo.setBtitle(rs.getString(3));
+				vo.setBdate(rs.getString(4));
+				vo.setBhit(rs.getInt(5));
+				list.add(vo);
+			}
+			
+		}catch(Exception e){ e.printStackTrace();}
+		return list;
+	}
+	/**
 	 * 게시글 등록
 	 */
 	public boolean getBoardWrite(BoardVO vo) {
@@ -229,6 +261,24 @@ public class BoardDAO {
 			e.printStackTrace();
 		}
 		
+		
+		return result;
+	}
+	
+	/**
+	 *  전체 카운트 가져오기
+	 **/
+	public int execTotalCount(){
+		int result =0;
+		try{
+			String sql = "select count(*) from dycgv_board";
+			getPreparedStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+		}catch(Exception e){e.printStackTrace();}
 		
 		return result;
 	}

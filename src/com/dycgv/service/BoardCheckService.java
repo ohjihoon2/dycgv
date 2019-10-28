@@ -9,6 +9,16 @@ public class BoardCheckService {
 	
 	
 	/**
+	 * 게시판  DB에서 전체 카운트 가져오기
+	 */
+	public int execTotalCount(){
+		int result =0;
+		BoardDAO dao = new BoardDAO();
+		result = dao.execTotalCount();
+		return result;
+	}
+	
+	/**
 	 * 게시물 삭제
 	 */
 	public boolean getResultDelete(String bno) {
@@ -84,9 +94,9 @@ public class BoardCheckService {
 	 * @param vo
 	 * @return
 	 */
-	public ArrayList<BoardVO> getResultBoard() {
+	public ArrayList<BoardVO> getResultBoard(int startCount, int endCount) {
 		BoardDAO dao = new BoardDAO();
-		ArrayList<BoardVO> list = dao.getBoardList();
+		ArrayList<BoardVO> list = dao.getBoardList(startCount, endCount);
 		
 		dao.close();
 		return list;

@@ -99,6 +99,60 @@ public class NoticeDAO {
 		return list;
 	}
 	
+	/**
+	 *  전체 list 출력 - 페이징 처리
+	 */
+	public ArrayList<NoticeVO> getNoticeList(int start, int end) {
+		ArrayList<NoticeVO> list = new ArrayList<NoticeVO>();
+		String sql = "SELECT * FROM (select rownum rno, nid, ntitle, to_char(ndate,'yyyy/mm/dd'), nhit " + 
+				" from (select nid, ntitle, ndate, nhit "+ 
+				"           from dycgv_notice " + 
+				"           order by ndate desc) )"+ 
+				" WHERE RNO BETWEEN ? AND ?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				NoticeVO vo = new NoticeVO();
+				vo.setRno(rs.getInt(1));
+				vo.setNid(rs.getInt(2));
+				vo.setNtitle(rs.getString(3));
+				vo.setNdate(rs.getString(4));
+				vo.setNhit(rs.getInt(5));
+				
+				list.add(vo);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	/**
+	 * 전체 카운트 가져오기 
+	 * @return
+	 */
+	public int execTotalCount(){
+		int result =0;
+		try{
+			String sql = "select count(*) from dycgv_notice";
+			getPreparedStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+		}catch(Exception e){e.printStackTrace();}
+		
+		return result;
+	}
+	
+	
 	/**  
 	 * 공지사항 상세 정보
 	 * @return 

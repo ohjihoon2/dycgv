@@ -7,7 +7,16 @@ import com.dycgv.vo.NoticeVO;
 
 public class NoticeCheckService {
 	
-	
+	/**
+	 * 전체 row count 출력
+	 * @return
+	 */
+	public int execTotalCount(){
+		int result =0;
+		NoticeDAO dao = new NoticeDAO();
+		result = dao.execTotalCount();
+		return result;
+	}
 	
 	/**
 	 * 공지사항 삭제
@@ -53,6 +62,18 @@ public class NoticeCheckService {
 	}
 	
 	/**
+	 * 공지사항 전체 리스트 - 페이징
+	 */
+	public ArrayList<NoticeVO> getResultList(int startCount, int endCount){
+		ArrayList<NoticeVO> list= new ArrayList<NoticeVO>();
+		
+		NoticeDAO dao = new NoticeDAO();
+		list = dao.getNoticeList(startCount, endCount);
+		
+		return list;
+	}
+
+	/**
 	 * 공지사항 전체 리스트
 	 */
 	public ArrayList<NoticeVO> getResultList(){
@@ -63,7 +84,7 @@ public class NoticeCheckService {
 		
 		return list;
 	}
-
+	
 	/**
 	 * 공지사항 글 등록  
 	 * @param vo

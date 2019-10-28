@@ -9,6 +9,17 @@ import com.dycgv.vo.MemberVO;
 public class JoinCheckService {
 
 	
+	/**
+	 * DB에서 전체 카운트 가져오기
+	 * @return
+	 */
+	public int execTotalCount(){
+		int result =0;
+		JoinDAO dao = new JoinDAO();
+		result = dao.execTotalCount();
+		return result;
+	}
+	
 	//회원가입 실행 메소드
 	public boolean getJoinResult(JoinVO vo) {
 		boolean result = false;
@@ -39,6 +50,16 @@ public class JoinCheckService {
 	public ArrayList<MemberVO> getJoinResultList() {
 		JoinDAO dao = new JoinDAO();
 		ArrayList<MemberVO> list = dao.getResultList();
+		
+		return list;
+	}
+	
+	/**
+	 * 회원 관리 리스트 - 페이징
+	 */
+	public ArrayList<MemberVO> getJoinResultList(int startCount, int endCount) {
+		JoinDAO dao = new JoinDAO();
+		ArrayList<MemberVO> list = dao.getResultList(startCount, endCount);
 		
 		return list;
 	}

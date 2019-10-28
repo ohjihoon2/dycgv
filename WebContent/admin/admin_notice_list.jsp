@@ -3,9 +3,37 @@
     import= "java.util.ArrayList, com.dycgv.vo.*, com.dycgv.service.*"%>
 
 <%
-//	String result = request.getParameter("result");
+	String rpage = request.getParameter("page");
 	NoticeCheckService service = new NoticeCheckService();
-	ArrayList<NoticeVO> list =service.getResultList();
+	
+	//1.페이징 처리 - startCount, endCount 구하기
+	int startCount = 0;
+	int endCount = 0;
+	int pageSize = 3;	//한페이지당 게시물 수
+	int reqPage = 1;	//요청페이지	
+	int pageCount = 1;	//전체 페이지 수
+	int dbCount = service.execTotalCount();	//DB에서 가져온 전체 행수
+	
+	//총 페이지 수 계산
+	if(dbCount % pageSize == 0){
+		pageCount = dbCount/pageSize;
+	}else{
+		pageCount = dbCount/pageSize+1;
+	}
+
+	//요청 페이지 계산
+	if(rpage != null){
+		reqPage = Integer.parseInt(rpage);
+		startCount = (reqPage-1) * pageSize+1;
+ 		endCount = reqPage *pageSize;
+	}else{
+		startCount = 1;
+		endCount = 3;
+	}
+
+
+	//
+	ArrayList<NoticeVO> list =service.getResultList(startCount, endCount);
 %>
 <!DOCTYPE html>
 <html>
@@ -13,14 +41,35 @@
 	<meta charset="UTF-8">
 	<title>CGV에 오신것을 환영합니다.</title>
 	<link rel="stylesheet" type="text/css" href="http://localhost:9090/dycgv/css/dycgv.css">
-	<script src="http://localhost:9090/MyJSP/jquery/jquery-3.4.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://localhost:9090/dycgv/css/am-pagination.css">
+	<script src="http://localhost:9090/dycgv/js/jquery-3.4.1.min.js"></script>
+	<script src="http://localhost:9090/dycgv/js/am-pagination.js"></script>
 	<script>
-	/* 	$(document).ready(function(){
-			if(${param.result} ==true){
-				alert('삭제 되었습니다.');
-			}
-		}); */
-	</script>
+		$(document).ready(function(){
+			
+			var pager = jQuery('#ampaginationsm').pagination({
+			
+			    maxSize: 7,	    		// max page size
+			    totals: <%=dbCount%>,	// total pages	
+			    page: <%=rpage%>,		// initial page		
+			    pageSize: <%=pageSize%>,			// max number items per page
+			
+			    // custom labels		
+			    lastText: '&raquo;&raquo;', 		
+			    firstText: '&laquo;&laquo;',		
+			    prevText: '&laquo;',		
+			    nextText: '&raquo;',
+					     
+			    btnSize:'sm'	// 'sm'  or 'lg'		
+			});
+			
+			jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+				   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+		           $(location).attr('href', "http://localhost:9090/dycgv/admin/admin_notice_list.jsp?page="+e.page);         
+		    });
+			
+	 	});
+	</script> 
 </head>
 <body>
 	<div>
@@ -50,7 +99,7 @@
 						</tr>
 							<%} %>
 						<tr>
-							<td colspan=4>[이전] 1 2 3 4 5 [다음]</td>
+							<td colspan=4><div id="ampaginationsm"></div></td>
 						</tr>
 					</table>
 				</div>

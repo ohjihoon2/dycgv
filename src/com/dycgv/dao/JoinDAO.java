@@ -98,6 +98,25 @@ public class JoinDAO {
 		}
 		
 		/**
+		 *  전체 카운트 가져오기
+		 **/
+		public int execTotalCount(){
+			int result =0;
+			try{
+				String sql = "select count(*) from dycgv_member";
+				getPreparedStatement(sql);
+				
+				
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					result = rs.getInt(1);
+				}
+			}catch(Exception e){e.printStackTrace();}
+			
+			return result;
+		}
+		
+		/**
 		 *  4~5단계 : 회원 리스트 페이지 
 		 */
 		public ArrayList<MemberVO> getResultList(){
@@ -106,9 +125,48 @@ public class JoinDAO {
 			String sql="select rownum rno, name, phone_number, to_char(jdate,'yyyy/mm/dd'), jgrade, jstatus, id" + 
 					" from (select name, phone_number, jdate, jgrade, jstatus, id " + 
 					"            from dycgv_member order by jdate desc)";
+					
 			getPreparedStatement(sql);
 			
 			try {
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					MemberVO vo = new MemberVO();
+					vo.setRno(rs.getInt(1));
+					vo.setName(rs.getString(2));
+					vo.setPhone_number(rs.getString(3));
+					vo.setJdate(rs.getString(4));
+					vo.setJgrade(rs.getString(5));
+					vo.setJstatus(rs.getInt(6));
+					vo.setId(rs.getString(7));
+					
+					list.add(vo);
+				}
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		
+			return list;
+		}
+		
+		
+		/**
+		 *  4~5단계 : 회원 리스트 페이지 
+		 */
+		public ArrayList<MemberVO> getResultList(int startCount, int endCount){
+			ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+			
+			String sql="select * from (select rownum rno, name, phone_number, to_char(jdate,'yyyy/mm/dd'), jgrade, jstatus, id" + 
+					" from (select name, phone_number, jdate, jgrade, jstatus, id " + 
+					"            from dycgv_member order by jdate desc)) "+
+					" where rno between ? and ?";
+			getPreparedStatement(sql);
+			
+			try {
+				pstmt.setInt(1, startCount);
+				pstmt.setInt(2, endCount);
 				rs = pstmt.executeQuery();
 				
 				while(rs.next()) {

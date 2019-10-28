@@ -7,6 +7,7 @@
  
 <%
 	String bno = request.getParameter("bno");
+	String rpage = request.getParameter("page");
 	BoardCheckService service = new BoardCheckService();
 	vo = service.getResultBoardContent(bno);
 	
@@ -67,7 +68,7 @@
 							<td colspan=6>
 								<a href="board_update.jsp?bno=<%=vo.getBno() %>"><button type="button">수정하기</button></a>
 								<a href="board_delete.jsp?bno=<%=vo.getBno() %>"><button type="button">삭제하기</button></a>
-								<a href="board_list.jsp"><button type="button">목록으로</button></a>
+								<a href="board_list.jsp?page=<%=rpage%>"><button type="button">목록으로</button></a>
 							</td>
 						</tr>
 					</table>
